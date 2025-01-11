@@ -1,30 +1,30 @@
 
 from typing import TYPE_CHECKING
+from pyglet.graphics import Batch, Group
 
 
 if TYPE_CHECKING:
-    from app.models.layer import ConfigLayer
     from app.commons.types import PygletElement
-    from app.models.layer import Layer
-    from pyglet.graphics import Batch
-
 
 
 class BaseLayer:
     batch: "Batch"
-    
+    elements: "list[PygletElement]"
+
     def __init__(
         self,
         name: str,
         order: int,
-        config_layer: "ConfigLayer",
-        x: int = 0,
-        y: int = 0,
-        width: int = 0,
-        height: int = 0,
         tags: list[str] = [],
     ) -> None:
-        pass
+        self.name = name
+        self.order = order
+
+        self.tags = tags
+
+        self.batch = Batch()
+        self.group = Group(order=order)
+        self.elements = []
 
     def __add_element(
         self,
@@ -44,6 +44,10 @@ class BaseLayer:
     
     def append(self, element: "PygletElement") -> "Layer":
         self.__add_element(element=element)
+        return self
+    
+    def remove(self, element: "PygletElement") -> "Layer":
+        self.elements.remove(element)
         return self
     
     def draw(self) -> None:

@@ -1,4 +1,4 @@
-from pyglet.shapes import ShapeBase, Line
+from pyglet.shapes import Line
 from typing import TYPE_CHECKING
 
 if TYPE_CHECKING:
