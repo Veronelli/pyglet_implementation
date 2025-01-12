@@ -32,9 +32,29 @@ class RectangleBorder():
         self.lines = [
             Line(
                 x=self.x,
-                y=self.y,
+                y=self.y-1,
                 x2=self.x + self.width,
-                y2=self.y,
+                y2=self.y-1,
+                color=self.color,
+                batch=self.batch,
+                width=self.border,
+                group=self.group
+            ),
+            Line(
+                x=self.x-1,
+                y=self.y,
+                x2=self.x-1,
+                y2=self.y + self.height,
+                color=self.color,
+                batch=self.batch,
+                width=self.border,
+                group=self.group
+            ),
+            Line(
+                x=self.x + self.width+1,
+                y=self.y,
+                x2=self.x + self.width+1,
+                y2=self.y + self.height,
                 color=self.color,
                 batch=self.batch,
                 width=self.border,
@@ -42,29 +62,9 @@ class RectangleBorder():
             ),
             Line(
                 x=self.x,
-                y=self.y,
-                x2=self.x,
-                y2=self.y + self.height,
-                color=self.color,
-                batch=self.batch,
-                width=self.border,
-                group=self.group
-            ),
-            Line(
-                x=self.x + self.width,
-                y=self.y,
+                y=self.y + self.height+1,
                 x2=self.x + self.width,
-                y2=self.y + self.height,
-                color=self.color,
-                batch=self.batch,
-                width=self.border,
-                group=self.group
-            ),
-            Line(
-                x=self.x,
-                y=self.y + self.height,
-                x2=self.x + self.width,
-                y2=self.y + self.height,
+                y2=self.y + self.height+1,
                 color=self.color,
                 batch=self.batch,
                 width=self.border,

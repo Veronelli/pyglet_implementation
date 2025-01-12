@@ -26,10 +26,10 @@ class BaseLayer:
         self.group = Group(order=order)
         self.elements = []
 
-    def __add_element(
+    def _add_element(
         self,
         element: "PygletElement"
-    ) -> "Layer":
+    ) -> "BaseLayer":
         '''
         Add an element to the layer
         Args:
@@ -42,11 +42,11 @@ class BaseLayer:
         self.elements.append(element)
         return self
     
-    def append(self, element: "PygletElement") -> "Layer":
-        self.__add_element(element=element)
+    def append(self, element: "PygletElement") -> "BaseLayer":
+        self._add_element(element=element)
         return self
     
-    def remove(self, element: "PygletElement") -> "Layer":
+    def remove(self, element: "PygletElement") -> "BaseLayer":
         self.elements.remove(element)
         return self
     

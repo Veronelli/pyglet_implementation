@@ -18,21 +18,17 @@ class StaticLayer(BaseLayer):
             order=order,
             tags=tags,
         )
-
-        self.x = x
-        self.y = y
-        
-        self.width = width
-        self.height = height
         
         self.layer_element = RectangleBorder(
-            x=self.x,
-            y=self.y,
-            width=self.width,
-            height=self.height,
+            x=x,
+            y=y,
+            width=width,
+            height=height,
             color=Color.BLUE,
             border=2.0,
             batch=self.batch,
             group=self.group
         )
+
+
     
