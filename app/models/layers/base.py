@@ -1,4 +1,3 @@
-
 from typing import TYPE_CHECKING
 from pyglet.graphics import Batch, Group
 
@@ -15,6 +14,7 @@ class BaseLayer:
         self,
         name: str,
         order: int,
+        group_instance: "Group",
         tags: list[str] = [],
     ) -> None:
         self.name = name
@@ -24,31 +24,29 @@ class BaseLayer:
 
         self.batch = Batch()
         self.group = Group(order=order)
+        self.render_layer = group_instance
         self.elements = []
 
-    def _add_element(
-        self,
-        element: "PygletElement"
-    ) -> "BaseLayer":
-        '''
+    def _add_element(self, element: "PygletElement") -> "BaseLayer":
+        """
         Add an element to the layer
         Args:
             element (Any): The element to add
         Returns:
             Layer: The layer instance
-        '''
+        """
         element.batch = self.batch
-        element.group = self.group
+        element.group = self.render_layer
         self.elements.append(element)
         return self
-    
+
     def append(self, element: "PygletElement") -> "BaseLayer":
         self._add_element(element=element)
         return self
-    
+
     def remove(self, element: "PygletElement") -> "BaseLayer":
         self.elements.remove(element)
         return self
-    
+
     def draw(self) -> None:
         self.batch.draw()

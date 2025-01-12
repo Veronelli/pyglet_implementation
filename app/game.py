@@ -1,26 +1,34 @@
+from app.commons.scsissor_group import ScissorGroup
 from app.models.layers.encapsule_layer import EncapsuleLayer
 from app.models.layers.static_layer import StaticLayer
 from app.utils.colors.base import ColorRGB
 from app.window import window, pyglet
 from pyglet.shapes import Rectangle
 
-my_layer = EncapsuleLayer(
-    x=20,
-    y=20,
+render_layer = ScissorGroup(
+    x=30,
+    y=30,
     width=500,
-    height=300,
+    height=400,
+    order=1
+)
+
+my_layer = EncapsuleLayer(
+    x=30.0,
+    y=30.0,
+    width=500,
+    height=400,
     name='my_layer',
     tags=['test'],
-    order=0
+    order=10,
+    group_instance=render_layer
 )
 square = Rectangle(
-    x=0,
-    y=0,
-    width=50,
-    height=30,
+    x=-60.0,
+    y=10,
+    width=100,
+    height=100,
     color=ColorRGB.RED, 
-    batch=my_layer.batch,
-    group=my_layer.group
 )
 my_layer.append(element=square)
 

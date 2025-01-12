@@ -1,7 +1,9 @@
-from app.commons.math import sum_difference
+from typing import TYPE_CHECKING
 from app.commons.types import PygletElement
 from app.models.layers.static_layer import StaticLayer
 
+if TYPE_CHECKING:
+    from pyglet.graphics import Group
 
 class EncapsuleLayer(StaticLayer):
     def __init__(
@@ -13,6 +15,7 @@ class EncapsuleLayer(StaticLayer):
         name: str,
         tags: list[str],
         order: int,
+        group_instance: "Group"
     ) -> None:
         super().__init__(
             x=x,
@@ -21,7 +24,8 @@ class EncapsuleLayer(StaticLayer):
             height=height,
             name=name,
             tags=tags,
-            order=order
+            order=order,
+            group_instance=group_instance
         )
         self._x = x
         self._y = y
@@ -33,8 +37,9 @@ class EncapsuleLayer(StaticLayer):
         self,
         element: "PygletElement"
     ) -> "EncapsuleLayer":
-        element.x = abs(self.x - element.x)
-        element.y = abs(self.y - element.y)
+        x = abs(element._x - self.x) + element.x
+        y = abs(element._y - self.y) + element.y
+        element.position = (x, y)
         return super()._add_element(
             element=element
         )
