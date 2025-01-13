@@ -4,8 +4,8 @@ from pyglet.gl import glEnable, glDisable, GL_SCISSOR_TEST, glScissor
 class ScissorGroup(Group):
     def __init__(self, x, y, width, height, order=0):
         super().__init__(order=order)
-        self.x = x*2
-        self.y = y*2    
+        self.x = x * 2
+        self.y = y * 2
         self.width = width * 2
         self.height = height * 2
 
