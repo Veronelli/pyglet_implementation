@@ -26,7 +26,6 @@ def factory_encapsule_layer(
     Returns:
         EncapsuleLayer: An instance of EncapsuleLayer with the specified properties.
     """
-    breakpoint()
     if group_type is ScissorGroup:
         group_instance = ScissorGroup(
             x=x,
